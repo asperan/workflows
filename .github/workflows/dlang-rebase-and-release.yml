@@ -6,6 +6,10 @@ on:
         description: ""
         required: true
         type: boolean
+      sign-keyserver:
+        description: "The keyserver"
+        required: true
+        type: string
     secrets:
       github-token:
         description: "The token to use for the release"
@@ -28,10 +32,11 @@ jobs:
           from-branch: "development"
           to-branch: "main"
           merge-type: "rebase"
-      - uses: asperan/actions-dlang-release@88edb42065acf01150941c11e17aa0075c32f5d5
+      - uses: asperan/actions-dlang-release@c87563645c51658bee0c41431b6e217594be5fe5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           is-executable: true
           gpg-sign-key: ${{ secrets.gpg-sign-key }}
           gpg-key-passphrase: ${{ secrets.gpg-key-passphrase }}
           gpg-key-fingerprint: ${{ secrets.gpg-key-fingerprint }}
+          sign-keyserver: ${{ inputs.sign-keyserver }}
