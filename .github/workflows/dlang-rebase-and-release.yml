@@ -10,6 +10,15 @@ on:
       github-token:
         description: "The token to use for the release"
         required: true
+      gpg-sign-key:
+        description: "The private key to sign artifacts"
+        required: true
+      gpg-key-passphrase:
+        description: "The passphrase to unlock the private key"
+        required: true
+      gpg-key-fingerprint:
+        description: "The fingerprint of the key"
+        required: true
 jobs:
   on-success:
     runs-on: ubuntu-latest
@@ -19,7 +28,10 @@ jobs:
           from-branch: "development"
           to-branch: "main"
           merge-type: "rebase"
-      - uses: asperan/actions-dlang-release@v1
+      - uses: asperan/actions-dlang-release@7c52298ef516902e755af9a940ee644698d918ca
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           is-executable: true
+          gpg-sign-key: ${{ secrets.gpg-sign-key }}
+          gpg-key-passphrase: ${{ secrets.gpg-key-passphrase }}
+          gpg-key-fingerprint: ${{ secrets.gpg-key-fingerprint }}
