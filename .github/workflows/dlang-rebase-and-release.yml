@@ -32,7 +32,7 @@ jobs:
           from-branch: "development"
           to-branch: "main"
           merge-type: "rebase"
-      - uses: asperan/actions-dlang-release@1989cf10be25a5dc443d81fd23407ed5a8322f9b
+      - uses: asperan/actions-dlang-release@1c07a0981936711d5955b4f33d6f759d92064e46
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           is-executable: true
